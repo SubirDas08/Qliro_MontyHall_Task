@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1>Monty Hall Simulation</h1>
+
+    <form asp-action="Simulate" method="post">
+        <div>
+            <label for="simulations">Number of simulations:</label>
+            <input type="number" id="simulations" name="simulations" value="@ViewBag.Simulations" />
+        </div>
+        <div>
+            <label for="switchDoors">Switch doors:</label>
+            <input type="checkbox" id="switchDoors" name="switchDoors" checked="@ViewBag.SwitchDoors" />
+        </div>
+        <button type="submit">Simulate</button>
+    </form>
+
+    @if (ViewBag.Wins != null)
+    {
+        <h2>Results</h2>
+        if (ViewBag.SwitchDoors)
+        {
+            <p>Switching wins: @ViewBag.Wins</p>
+            <p>Staying wins: @(ViewBag.Simulations - ViewBag.Wins)</p>
+        }
+        else
+        {
+            <p>Staying wins: @ViewBag.Wins</p>
+            <p>Switching wins: @(ViewBag.Simulations - ViewBag.Wins)</p>
+        }
+    }
+</div>
